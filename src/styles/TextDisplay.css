@@ -1,0 +1,35 @@
+.paragraph {
+  align-self: center;
+  font-size: 1.2rem;
+  line-height: 1.6;
+  padding: 30px;
+  margin-top: 10px;
+  font-size: 35px;
+  font-weight: 600;
+}
+
+.text-content{
+  white-space: pre-wrap; /* Preserves spaces and line breaks */
+}
+
+.char {
+  color:#c6cdd4
+}
+
+.char.correct{
+  color: black;
+}
+
+.char.incorrect{
+  color: red
+}
+
+.char.current {
+  border-left: 3px solid #000000;
+  animation: blink 1s infinite; ; 
+}
+
+@keyframes blink {
+  0%, 50% { border-left-color: #000000; }
+  51%, 100% { border-left-color: transparent; }
+}
