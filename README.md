@@ -2,7 +2,7 @@
 
 A minimalist typing speed test application built with React and TypeScript. Because it's okay to be a slow typer! 🐌⌨️
 
-![Slow Typer Demo](public/animation.svg)
+![Slow Typer Demo](public/animation.gif)
 
 ## Features
 
