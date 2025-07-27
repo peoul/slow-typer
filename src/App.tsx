@@ -3,11 +3,25 @@ import TextDisplay from "./components/TextDisplay";
 import Stats from "./components/Stats";
 import { useTypingTest } from "./hooks/usetypingTest";
 import resetIcon from "./assets/resetIcon.svg";
+import typingTexts from "./assets/text.json"
+import { useState } from "react";
 
 function App() {
-  const text =
-    "The quick brown fox jumps over the lazy dog.";
-  const { userInput, status, wrongCounter, timeInSeconds, resetHandler } = useTypingTest(text);
+  
+  
+  const getRandomText = () => {
+    const randomIndex = Math.floor(Math.random() * typingTexts.length);
+    return typingTexts[randomIndex];
+  };
+
+  const [currentText, setCurrentText] = useState(() => getRandomText());
+
+  const { userInput, status, wrongCounter, timeInSeconds, resetHandler } = useTypingTest(currentText);
+
+  const handleReset = () => {
+    resetHandler(); // Reset the typing test
+    setCurrentText(getRandomText()); // Get new random text
+  }
 
   return (
     <>
@@ -18,12 +32,12 @@ function App() {
         </div>
       </div>
       <div className="content">
-        <TextDisplay text={text} userInput={userInput} />
+        <TextDisplay text={currentText} userInput={userInput} />
       </div>
       <div className="footer">
-        {status === "completed" && <Stats wrongCounter={wrongCounter} textLength={text.length} time={timeInSeconds}/>}
+        {status === "completed" && <Stats wrongCounter={wrongCounter} textLength={currentText.length} time={timeInSeconds}/>}
         {status === "completed" && (
-          <button className="reset_btn" onClick={resetHandler}>
+          <button className="reset_btn" onClick={handleReset}>
             <img src={resetIcon} alt="Reset" className="reset_icon" />
           </button>
         )}

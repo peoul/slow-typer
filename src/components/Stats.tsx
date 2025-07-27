@@ -3,7 +3,7 @@ import type { StatsProps } from "../types";
 
 function Stats({ wrongCounter, textLength, time }: StatsProps) {
   const accuracy = ((textLength - wrongCounter) / textLength) * 100;
-  const formattedAccuracy = Number(accuracy.toFixed(1)); 
+  const formattedAccuracy = Number(accuracy.toFixed(0)); 
 
   const timeInMinutes = time / 60;
 
