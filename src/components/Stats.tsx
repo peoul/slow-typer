@@ -1,8 +1,32 @@
-function Stats() {
+import "../styles/State.css";
+import type { StatsProps } from "../types";
 
-    return <>
-    
-    </>
+function Stats({ wrongCounter, textLength, time }: StatsProps) {
+  const accuracy = ((textLength - wrongCounter) / textLength) * 100;
+  const formattedAccuracy = Number(accuracy.toFixed(1)); 
+
+  const timeInMinutes = time / 60;
+
+  const WPM = Math.round(textLength / 5 / timeInMinutes);
+  
+  return (
+    <div className="stat_box">
+      <h1>Your Stats</h1>
+      <div className="stats_container">
+        <StatItem name="Mistakes" value={wrongCounter} />
+        <StatItem name="WPM" value={WPM} />
+        <StatItem name="Accuracy (%)" value={formattedAccuracy} />
+      </div>
+    </div>
+  );
 }
 
-export default Stats
+const StatItem = ({ name, value }: { name: string; value: number }) => {
+  return (
+    <div>
+      <p>{value}</p>
+      <h3>{name}</h3>
+    </div>
+  );
+};
+export default Stats;

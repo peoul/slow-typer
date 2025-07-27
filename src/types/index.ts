@@ -3,3 +3,10 @@ export interface TextDisplayProps {
     userInput: string;
 
 }
+
+export interface StatsProps {
+    wrongCounter: number;
+    textLength: number;
+    time: number;
+
+}

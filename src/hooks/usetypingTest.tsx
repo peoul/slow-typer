@@ -4,8 +4,45 @@ export const useTypingTest = (text: string) => {
   const [userInput, setUserInput] = useState("");
   const [status, setStatus] = useState<"idle" | "active" | "completed">("idle");
   const [wrongCounter, setWrongCounter] = useState(0);
+  const [timerState, setTimerState] = useState({
+    timerValue: 0,
+    prevTime: Date.now(),
+    isRunning: false,
+  });
 
+  //timer
 
+  useEffect(() => {
+    let watchDog: ReturnType<typeof setInterval>;
+
+    if (status === "active") {
+      if (!timerState.isRunning) {
+        // Start timer
+        setTimerState((prev) => ({
+          ...prev,
+          isRunning: true,
+          prevTime: Date.now(),
+        }));
+      }
+
+      watchDog = setInterval(() => {
+        const now = Date.now();
+        setTimerState((ps) => ({
+          ...ps,
+          timerValue: ps.timerValue + (now - ps.prevTime),
+          prevTime: now,
+        }));
+      }, 100);
+    }
+
+    return () => {
+      if (watchDog) {
+        clearInterval(watchDog);
+      }
+    };
+  }, [status, timerState.isRunning]);
+
+  //update Status
   useEffect(() => {
     if (userInput.length >= text.length) {
       setStatus("completed");
@@ -14,11 +51,14 @@ export const useTypingTest = (text: string) => {
     }
   }, [userInput.length, text.length, status]);
 
+  //save key stroke - universal
   useEffect(() => {
     if (status === "completed") {
-
-      const errors = [...userInput].filter((char, index) => char !== text[index]).length;
-      setWrongCounter(errors)
+      console.log(1);
+      const errors = [...userInput].filter(
+        (char, index) => char !== text[index]
+      ).length;
+      setWrongCounter(errors);
       return;
     }
 
@@ -44,7 +84,20 @@ export const useTypingTest = (text: string) => {
     return () => {
       document.removeEventListener("keypress", detectKeyDown, true);
     };
-  }, [userInput, status, text]);
+  }, [userInput, text, status]);
 
-  return { userInput, status, wrongCounter };
+  const resetHandler = () => {
+    setUserInput("");
+    setStatus("idle");
+    setWrongCounter(0);
+    setTimerState(() => ({
+      timerValue: 0,
+      prevTime: Date.now(),
+      isRunning: false,
+    }));
+  };
+
+    const timeInSeconds = Math.round(timerState.timerValue / 1000);
+
+  return { userInput, status, wrongCounter,timeInSeconds, resetHandler };
 };
