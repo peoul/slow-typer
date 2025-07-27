@@ -6,7 +6,7 @@ import resetIcon from "./assets/resetIcon.svg";
 
 function App() {
   const text =
-    "The quick brown fox jumps over the lazy dog. it's";
+    "The quick brown fox jumps over the lazy dog.";
   const { userInput, status, wrongCounter, timeInSeconds, resetHandler } = useTypingTest(text);
 
   return (
