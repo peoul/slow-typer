@@ -24,6 +24,12 @@
   color: red
 }
 
+.char.incorrect_space {
+  background-color: #fef2f2;
+  border-bottom: 2px solid red; 
+  min-width: 8px; 
+}
+
 .char.current {
   border-left: 3px solid #000000;
   animation: blink 1s infinite; ; 
