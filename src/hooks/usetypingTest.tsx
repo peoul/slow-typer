@@ -63,6 +63,9 @@ export const useTypingTest = (text: string) => {
     }
 
     const detectKeyDown = (e: KeyboardEvent) => {
+
+      e.preventDefault()
+      
       if (e.key === "Enter") {
         e.preventDefault();
         return;

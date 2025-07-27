@@ -4,5 +4,15 @@
     border-top: solid black;
 }
 
+.stat_container{
+    display: inline-flex;
+    justify-content: space-around;
+}
 
+.stat_item{
+    text-align: center;
+}
 
+.stat_item p{
+    font-size: 50px;
+}

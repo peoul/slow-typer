@@ -34,6 +34,7 @@
   justify-content: center;
   min-height: 30vh;
   padding: 10px;
+  gap: 15px;
 }
 
 .reset_btn {
@@ -41,9 +42,9 @@
   align-self: center;
   background-color: transparent;
   border: 0;
-  margin-top: 20px; /* Add some space above button */
-  padding: 8px 16px; /* Add some padding for better click area */
-  cursor: pointer; /* Show it's clickable */
+  margin-top: 20px; 
+  padding: 8px 16px;
+  cursor: pointer; 
 }
 
 .reset_icon {

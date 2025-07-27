@@ -12,7 +12,7 @@ function Stats({ wrongCounter, textLength, time }: StatsProps) {
   return (
     <div className="stat_box">
       <h1>Your Stats</h1>
-      <div className="stats_container">
+      <div className="stat_container">
         <StatItem name="Mistakes" value={wrongCounter} />
         <StatItem name="WPM" value={WPM} />
         <StatItem name="Accuracy (%)" value={formattedAccuracy} />
@@ -23,7 +23,7 @@ function Stats({ wrongCounter, textLength, time }: StatsProps) {
 
 const StatItem = ({ name, value }: { name: string; value: number }) => {
   return (
-    <div>
+    <div className="stat_item">
       <p>{value}</p>
       <h3>{name}</h3>
     </div>
